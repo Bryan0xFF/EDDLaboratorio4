@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace Laboratorio4_1252016_1053016.Models
 {
-    public class Pais
+    public class país
     {
-        public int[] Faltantes { get; set; }
-        public int[] Coleccionadas { get; set; }
-        public int[] Cambios { get; set; }
+        [JsonProperty("faltantes")]
+        public int[] faltantes { get; set; }
+
+        [JsonProperty("coleccionadas")]
+        public int[] coleccionadas { get; set; }
+
+        [JsonProperty("cambios")]
+        public int[] cambios { get; set; }
 
     }
 }
