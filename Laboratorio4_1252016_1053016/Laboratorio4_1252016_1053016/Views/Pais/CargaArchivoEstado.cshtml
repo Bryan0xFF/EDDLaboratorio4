@@ -1,16 +1,17 @@
-﻿@{
-    ViewBag.Title = "Lector";
+﻿
+@{
+    ViewBag.Title = "CargaArchivoEstado";
 }
 
 <!DOCTYPE html>
 
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Lector</title>
+    <title>Success</title>
 </head>
-<h1> Cargar calcomanias de paises</h1>
+<h1> Cargar estado de calcomanias</h1>
 <body>
-    @using (Html.BeginForm("InsertarDatos", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("InsertarDatosEstado", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @ViewBag.Error
         <table cellpadding="2" cellspacing="2">

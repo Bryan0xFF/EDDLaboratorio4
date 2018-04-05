@@ -147,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\NumCalcomania.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\PaisList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,6 +190,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Pais\CargaArchivos.cshtml" />
+    <Content Include="Views\Pais\Dictionary1Success.cshtml" />
+    <Content Include="Views\Pais\CargaArchivoEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
