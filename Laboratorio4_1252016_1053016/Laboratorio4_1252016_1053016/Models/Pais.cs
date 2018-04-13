@@ -9,13 +9,13 @@ namespace Laboratorio4_1252016_1053016.Models
     public class Pais
     {
         [JsonProperty("faltantes")]
-        public int[] faltantes { get; set; }
+        public List<int> faltantes { get; set; }
 
         [JsonProperty("coleccionadas")]
-        public int[] coleccionadas { get; set; }
+        public List<int> coleccionadas { get; set; }
 
         [JsonProperty("cambios")]
-        public int[] cambios { get; set; }
+        public List<int> cambios { get; set; }
 
     }
 }

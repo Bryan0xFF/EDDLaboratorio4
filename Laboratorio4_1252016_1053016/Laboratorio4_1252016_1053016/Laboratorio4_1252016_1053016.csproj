@@ -191,6 +191,7 @@
     <Content Include="Views\Pais\CargaArchivos.cshtml" />
     <Content Include="Views\Pais\Dictionary1Success.cshtml" />
     <Content Include="Views\Pais\CargaArchivoEstado.cshtml" />
+    <Content Include="Views\Pais\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

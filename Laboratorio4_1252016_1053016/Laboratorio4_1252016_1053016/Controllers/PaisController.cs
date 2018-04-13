@@ -94,7 +94,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
         }
 
         [HttpGet]
-        public ActionResult Lector()
+        public ActionResult LectorPaises()
         {
             return View("CargaArchivos"); 
         }
@@ -139,8 +139,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
                             var lista = JsonConvert.DeserializeObject<List<Dictionary<string, Pais>>>(info);
                             for (int i = 0; i < lista.Count; i++)
                             {
-                                dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value);
-                                var key = dictionary.Keys;
+                                dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value);                               
                             } 
                            
                             return View("Dictionary1Success");
@@ -197,6 +196,50 @@ namespace Laboratorio4_1252016_1053016.Controllers
                 }
             }
             return View();
+        }
+
+        private void ActualizarInformacion(NumCalcomania calcomania, bool flag)
+        {
+            for (int i = 0; i < dictionary.Count; i++)
+            {
+                bool contains = dictionary.ContainsKey(calcomania.Pais); 
+                if(contains)
+                {
+                    if (flag)
+                    {
+                        Pais PaisEditar = dictionary[calcomania.Pais]; 
+                        if (PaisEditar.coleccionadas.Contains(calcomania.Num))
+                        {
+                            PaisEditar.cambios.Add(calcomania.Num);                             
+                        }
+                        else
+                        {
+                            PaisEditar.coleccionadas.Add(calcomania.Num); 
+                            if(PaisEditar.faltantes.Contains(calcomania.Num))
+                            {
+                                PaisEditar.faltantes.Remove(calcomania.Num); 
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Pais PaisEditar = dictionary[calcomania.Pais];
+                        if(!PaisEditar.faltantes.Contains(calcomania.Num))
+                        {
+                            PaisEditar.faltantes.Add(calcomania.Num);
+                        }
+                    }
+                }               
+            }
+        }
+
+        public ActionResult Actualizar()
+        {
+            for (int i = 0; i < dictionary2.Count; i++)
+            {
+                ActualizarInformacion(dictionary2.Keys.ElementAt(i), dictionary2.Values.ElementAt(i));
+            }
+            return View("Dictionary1Success"); 
         }
     }
 }
