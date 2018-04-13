@@ -149,7 +149,6 @@
     </Compile>
     <Compile Include="Models\NumCalcomania.cs" />
     <Compile Include="Models\Pais.cs" />
-    <Compile Include="Models\PaisList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

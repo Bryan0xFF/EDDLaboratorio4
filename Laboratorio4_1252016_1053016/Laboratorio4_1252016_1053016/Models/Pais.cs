@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Laboratorio4_1252016_1053016.Models
 {
-    public class país
+    public class Pais
     {
         [JsonProperty("faltantes")]
         public int[] faltantes { get; set; }

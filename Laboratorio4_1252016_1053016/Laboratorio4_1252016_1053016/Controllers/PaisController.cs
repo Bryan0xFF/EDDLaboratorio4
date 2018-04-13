@@ -12,8 +12,8 @@ namespace Laboratorio4_1252016_1053016.Controllers
 {
     public class PaisController : Controller
     {
-        Dictionary<string, país> dictionary = new Dictionary<string, país>();
-        Dictionary<país, NumCalcomania> dictionary2 = new Dictionary<país, NumCalcomania>();
+        Dictionary<string, Pais> dictionary = new Dictionary<string, Pais>();
+        Dictionary<Pais, NumCalcomania> dictionary2 = new Dictionary<Pais, NumCalcomania>();
 
         // GET: Pais
         public ActionResult Index()
@@ -136,10 +136,11 @@ namespace Laboratorio4_1252016_1053016.Controllers
                         if (reader != null)
                         {                           
                             string info = reader.ReadToEnd();
-                            var lista = JsonConvert.DeserializeObject<List<Dictionary<string, país>>>(info);
+                            var lista = JsonConvert.DeserializeObject<List<Dictionary<string, Pais>>>(info);
                             for (int i = 0; i < lista.Count; i++)
                             {
-                                dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value); 
+                                dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value);
+                                var key = dictionary.Keys;
                             } 
                            
                             return View("Dictionary1Success");
@@ -177,7 +178,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
                         if (reader != null)
                         {
                             string info = reader.ReadToEnd();
-                            var lista = JsonConvert.DeserializeObject<List<Dictionary<país, NumCalcomania>>>(info);
+                            var lista = JsonConvert.DeserializeObject<List<Dictionary<string,bool>>>(info);
                             for (int i = 0; i < lista.Count; i++)
                             {
                                // dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value);

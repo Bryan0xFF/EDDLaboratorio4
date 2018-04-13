@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Lector";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,12 +9,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Lector</title>
 </head>
-<h1> Cargar calcomanias de paises</h1>
+<h1 align="center"> Cargar calcomanias de paises</h1>
 <body>
     @using (Html.BeginForm("InsertarDatos", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @ViewBag.Error
-        <table cellpadding="2" cellspacing="2">
+        <table cellpadding="2" cellspacing="2" align="center">
             <tr>
                 <td> Archivo Json</td>
                 <td> <input type="file" name="File" /></td>
