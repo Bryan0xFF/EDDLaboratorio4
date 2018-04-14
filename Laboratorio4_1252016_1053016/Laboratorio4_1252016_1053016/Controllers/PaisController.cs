@@ -204,35 +204,26 @@ namespace Laboratorio4_1252016_1053016.Controllers
         {
             for (int i = 0; i < dictionary.Count; i++)
             {
-                bool contains = dictionary.ContainsKey(calcomania.Pais); 
-                if(contains)
+                bool contains = dictionary.ContainsKey(calcomania.Pais);                
+                if (contains)
                 {
+                    Pais PaisEditar = dictionary[calcomania.Pais];
                     if (flag)
-                    {
-                        Pais PaisEditar = dictionary[calcomania.Pais]; 
-                        if (PaisEditar.coleccionadas.Contains(calcomania.Num))
-                        {
-                            PaisEditar.cambios.Add(calcomania.Num);                             
-                        }
-                        else
+                    {                       
+                        if(!PaisEditar.coleccionadas.Contains(calcomania.Num))
                         {
                             PaisEditar.coleccionadas.Add(calcomania.Num); 
-                            if(PaisEditar.faltantes.Contains(calcomania.Num))
-                            {
-                                PaisEditar.faltantes.Remove(calcomania.Num); 
-                            }
                         }
-                        dictionary[calcomania.Pais] = PaisEditar;
+
                     }
                     else
-                    {
-                        Pais PaisEditar = dictionary[calcomania.Pais];
+                    {                        
                         if(!PaisEditar.faltantes.Contains(calcomania.Num))
                         {
                             PaisEditar.faltantes.Add(calcomania.Num);
-                        }
-                        dictionary[calcomania.Pais] = PaisEditar;
-                    }                    
+                        }                     
+                    }
+                    dictionary[calcomania.Pais] = PaisEditar;
                 }
             }
             Session["Diccionario1"] = dictionary; 
