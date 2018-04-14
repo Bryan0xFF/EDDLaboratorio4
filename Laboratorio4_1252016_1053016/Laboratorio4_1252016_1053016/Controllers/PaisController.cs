@@ -18,7 +18,9 @@ namespace Laboratorio4_1252016_1053016.Controllers
         // GET: Pais
         public ActionResult Index()
         {
-            return View();
+            Session["Diccionario1"] = Session["Diccionario1"] ?? dictionary;
+            Session["Diccionario2"] = Session["Diccionario2"] ?? dictionary2; 
+            return View();            
         }
 
         // GET: Pais/Details/5
@@ -140,8 +142,8 @@ namespace Laboratorio4_1252016_1053016.Controllers
                             for (int i = 0; i < lista.Count; i++)
                             {
                                 dictionary.Add(lista.ElementAt(i).ElementAt(0).Key, lista.ElementAt(i).ElementAt(0).Value);                               
-                            } 
-                           
+                            }
+                            Session["Diccionario1"] = dictionary; 
                             return View("Dictionary1Success");
                         }
                     }
@@ -179,7 +181,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
                             string info = reader.ReadToEnd();
                             var lista = JsonConvert.DeserializeObject<List<Dictionary<string,bool>>>(info);                        
 
-                            for (int i = 0; i < lista.Count; i++)
+                            for (int i = 0; i < lista.ElementAt(0).Count(); i++)
                             {
                                 var datos = lista.ElementAt(0).ElementAt(i).Key.Split('_');
                                 NumCalcomania calcomania = new NumCalcomania
@@ -189,7 +191,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
                                 };
                                 dictionary2.Add(calcomania, lista.ElementAt(0).ElementAt(i).Value); 
                             }
-
+                            Session["Diccionario2"] = dictionary2; 
                             return View("Dictionary1Success");
                         }
                     }
@@ -220,6 +222,7 @@ namespace Laboratorio4_1252016_1053016.Controllers
                                 PaisEditar.faltantes.Remove(calcomania.Num); 
                             }
                         }
+                        dictionary[calcomania.Pais] = PaisEditar;
                     }
                     else
                     {
@@ -228,18 +231,22 @@ namespace Laboratorio4_1252016_1053016.Controllers
                         {
                             PaisEditar.faltantes.Add(calcomania.Num);
                         }
-                    }
-                }               
+                        dictionary[calcomania.Pais] = PaisEditar;
+                    }                    
+                }
             }
+            Session["Diccionario1"] = dictionary; 
         }
 
         public ActionResult Actualizar()
         {
+            dictionary = (Dictionary<string, Pais>) Session["Diccionario1"];
+            dictionary2 =(Dictionary<NumCalcomania, bool>) Session["Diccionario2"]; 
             for (int i = 0; i < dictionary2.Count; i++)
             {
                 ActualizarInformacion(dictionary2.Keys.ElementAt(i), dictionary2.Values.ElementAt(i));
             }
-            return View("Dictionary1Success"); 
+            return View(); 
         }
     }
 }
