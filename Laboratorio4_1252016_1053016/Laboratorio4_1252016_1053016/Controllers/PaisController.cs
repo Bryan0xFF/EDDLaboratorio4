@@ -215,15 +215,12 @@ namespace Laboratorio4_1252016_1053016.Controllers
                         {
                             PaisEditar.coleccionadas.Add(calcomania.Num); 
                         }
-<<<<<<< HEAD
-=======
+
                         //si ya esta en coleccionadas la agrega a las calcomanias disp. para cambios
                         else if(!PaisEditar.cambios.Contains(calcomania.Num))
                         {
                             PaisEditar.cambios.Add(calcomania.Num);
-                        }
-
->>>>>>> 9b57a4099d0a3689b95ba12e9022bb0578130bd6
+                        }                        
                     }
                     else
                     {      
