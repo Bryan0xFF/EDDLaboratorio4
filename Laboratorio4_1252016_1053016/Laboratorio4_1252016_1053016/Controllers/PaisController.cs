@@ -214,7 +214,6 @@ namespace Laboratorio4_1252016_1053016.Controllers
                         {
                             PaisEditar.coleccionadas.Add(calcomania.Num); 
                         }
-
                     }
                     else
                     {                        
