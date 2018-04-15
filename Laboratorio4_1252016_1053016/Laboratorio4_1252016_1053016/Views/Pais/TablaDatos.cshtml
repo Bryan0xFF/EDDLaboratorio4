@@ -1,0 +1,63 @@
+﻿@using System.Text
+
+@model Dictionary<string, Laboratorio4_1252016_1053016.Models.Pais>
+@{
+                /**/
+
+
+                ViewBag.Title = "TablaDatos";
+
+                StringBuilder sb = new StringBuilder();
+                string cambios = "";
+                string coleccionadas = "";
+                string faltantes = "";
+
+                for (int i = 0; i < Model.Values.Count; i++)
+                {
+                    
+                }
+
+
+                <p><div><b>Tabla de datos del diccionario</b><br /></div></p>
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <th>Nombre Pais</th>
+                        <th>Cambios</th>
+                        <th>Coleccionadas</th>
+                        <th>Faltantes</th>
+                    </tr>
+                    @for (int i = 0; i < Model.Values.Count; i++)
+                    {
+                      <tr>
+                          <td>@Model.ElementAt(i).Key</td>
+
+                        @foreach (var item in Model.Values.ElementAt(i).cambios)
+                        {
+                            sb.Append(item.ToString() + ",");
+                        }
+                        <td>@sb.ToString()</td>
+                         @sb.Clear()
+
+                        @foreach (var item in Model.Values.ElementAt(i).coleccionadas)
+                        {
+                            sb.Append(item.ToString() + ",");
+                        }
+                        <td>@sb.ToString()</td>
+                          @sb.Clear()
+
+                        @foreach (var item in Model.Values.ElementAt(i).faltantes)
+                        {
+                            sb.Append(item.ToString()+",");
+                        }
+                        <td>@sb.ToString()</td>
+                          @sb.Clear()
+                      </tr>
+                     }
+                </table>
+
+}
+
+
+
+
+
