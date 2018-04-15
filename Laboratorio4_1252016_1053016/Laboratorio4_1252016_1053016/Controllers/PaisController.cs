@@ -202,30 +202,42 @@ namespace Laboratorio4_1252016_1053016.Controllers
 
         private void ActualizarInformacion(NumCalcomania calcomania, bool flag)
         {
-            for (int i = 0; i < dictionary.Count; i++)
-            {
-                bool contains = dictionary.ContainsKey(calcomania.Pais);                
+           
+                bool contains = dictionary.ContainsKey(calcomania.Pais);
+                
                 if (contains)
                 {
                     Pais PaisEditar = dictionary[calcomania.Pais];
                     if (flag)
-                    {                       
+                    {          
+                        //si no esta en coleccionadas, agrega la calcomania actual
                         if(!PaisEditar.coleccionadas.Contains(calcomania.Num))
                         {
                             PaisEditar.coleccionadas.Add(calcomania.Num); 
                         }
+                        //si ya esta en coleccionadas la agrega a las calcomanias disp. para cambios
+                        else if(!PaisEditar.cambios.Contains(calcomania.Num))
+                        {
+                            PaisEditar.cambios.Add(calcomania.Num);
+                        }
 
                     }
                     else
-                    {                        
+                    {      
+                        //si no lo contiene en faltantes lo agrega.
                         if(!PaisEditar.faltantes.Contains(calcomania.Num))
                         {
                             PaisEditar.faltantes.Add(calcomania.Num);
-                        }                     
+                        }
+
+                        //si esta en coleccionadas lo agrega en faltantes (segun el if previamente establecido)
+                        if (PaisEditar.coleccionadas.Contains(calcomania.Num))
+                        {
+                            PaisEditar.coleccionadas.Remove(calcomania.Num);
+                        }
                     }
                     dictionary[calcomania.Pais] = PaisEditar;
                 }
-            }
             Session["Diccionario1"] = dictionary; 
         }
 
@@ -238,6 +250,12 @@ namespace Laboratorio4_1252016_1053016.Controllers
                 ActualizarInformacion(dictionary2.Keys.ElementAt(i), dictionary2.Values.ElementAt(i));
             }
             return View(); 
+        }
+
+        public ActionResult TablaDatos()
+        {
+            dictionary = (Dictionary<string, Pais>)Session["Diccionario1"];
+            return View(dictionary);
         }
     }
 }
